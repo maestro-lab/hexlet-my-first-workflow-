@@ -1,2 +1,3 @@
-    say-hello:
-     @/bin/echo "Hello, World!"
+     - name: Say Hello
+       run: make say-hello
+       shell: bash
