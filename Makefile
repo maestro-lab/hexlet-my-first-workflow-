@@ -1,3 +1,2 @@
-   say-hello:
-      @echo "Hello, World!"
-   
+say-hello:
+	@echo "Hello, World!"
