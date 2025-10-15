@@ -1,0 +1,21 @@
+    name: CI
+
+    on:
+      push:
+        branches: [ "main" ]  # Или "master"
+      pull_request:
+        branches: [ "main" ]  # Или "master"
+
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+
+        steps:
+          - uses: actions/checkout@v3 # Обязательно укажите версию v3 или новее
+          - name: Setup project
+            run: make setup
+          - name: Run tests
+            run: make test
+          - name: Run lint
+            run: make lint
+    
