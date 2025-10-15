@@ -1,29 +1,24 @@
-name: Node CI
+name: CI
 
 on:
-  - push
-  - pull_request
-
-env:
-  CI: true
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - run: make install
-      - run: make lint
-      - run: make test
       - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16  # Или используйте другую подходящую версию
+      - name: Setup project
+        run: make setup
+      - name: Run tests
+        run: make test
+      - name: Run lint
+        run: make lint
